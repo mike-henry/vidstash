@@ -2,6 +2,10 @@
 // Generated on Sat Jul 25 2015 15:29:59 GMT+0100 (GMT Daylight Time)
 
 module.exports = function(config) {
+	
+  var ROOT = '../../../main/webapp/';
+  var BOWER_ASSETS = ROOT + 'assets/bower/';
+  
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
@@ -16,8 +20,12 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      {pattern: '**/*Spec.js', included: true},
-      {pattern: '../../../main/webapp/js/**/*.js', included: true}
+            
+      {pattern: BOWER_ASSETS + 'angular/angular.js', included: true},
+      {pattern: BOWER_ASSETS + 'angular/angular.js', included: true},
+      {pattern: BOWER_ASSETS + 'angular-mocks/angular-mocks.js', included: true},
+      {pattern: '../../../main/webapp/js/**/*.js', included: true},
+      {pattern: '**/*Spec.js', included: true}
     ],
 
 
