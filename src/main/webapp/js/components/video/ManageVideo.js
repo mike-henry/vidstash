@@ -1,5 +1,5 @@
 
-(function(){
+define(['angular'],function(){
 
 	var module = angular.module('com.spx.vidstash.video',[]);
 	
@@ -52,7 +52,7 @@
 	
 	
 	
-})();
+});
 
 
 

@@ -40,8 +40,10 @@ requirejs.config({
 
     shim: {
         'underscore': {
+        	
             exports: '_'
-        }
+        },
+        'angular-mocks': ['angular']
        
     
     },
