@@ -35,7 +35,7 @@ requirejs.config({
         'angular': BOWER_ASSETS+ 'angular/angular',
         'angular-mocks': BOWER_ASSETS+ 'angular-mocks/angular-mocks',
         'root':_MAIN ,
-          'app':'main/webapp/js/app'
+         'app':'main/webapp/js/app'
     },
 
     shim: {

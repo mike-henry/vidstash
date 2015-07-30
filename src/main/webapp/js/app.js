@@ -1,13 +1,10 @@
 /* app.js */
 
-alert('YY')
-define([], function() {
+
+define(['angular'], function(app) {
+
 	
- 
-  alert('XX')
- 
-	
-  var module = angular.module('app', []);
+  var module = angular.module('app', []);   //TODO get angular found!!
   module.config(['$controllerProvider', 
     '$compileProvider', 
     '$filterProvider', 

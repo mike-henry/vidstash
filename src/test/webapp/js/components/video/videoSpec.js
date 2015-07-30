@@ -1,6 +1,6 @@
 //TODO create VideoManager
 
-define(['app'], function(app) {
+define(['main/webapp/js/components/video/model/Video'], function(video) {
 //	define([''], function() {
 
   
@@ -19,7 +19,6 @@ describe('manage videos', function() {
 	it('can create a video', function() {
 		
 		
-		expect(app).toBeDefined();		
 		
 		var video = new com.spx.vidstash.Video(TEST_NAME,BOB_MARTIN_VIDEO_URL,TEST_DESCRIPTION);
 		
