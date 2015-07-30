@@ -1,5 +1,12 @@
-(function() {
 
+
+
+alert('boo');
+
+define([], function() {
+
+	
+	console.log('Hello video');
 	com.spx.vidstash.Video = function(name, url, description) {
 		this.name = name;
 		this.url = url;
@@ -17,7 +24,11 @@
 		this.getDescription = function() {
 			return this.description;
 		};
+		
+		this.setDescription = function(description) {
+			 this.description = description;
+		};
 
 	};
 
-})();
+});

@@ -3,17 +3,13 @@
 
 module.exports = function(config) {
 	
-  
-  var TEST = 'test/webapp/';
-  var MAIN = 'main/webapp/';	  
-  
-
-  var BOWER_ASSETS = MAIN + 'assets/bower/';
+  var ROOT = '../../../main/webapp/';
+  var BOWER_ASSETS = ROOT + 'assets/bower/';
   
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '../../..',
+    basePath: '',
 
 
     // frameworks to use
@@ -22,29 +18,22 @@ module.exports = function(config) {
      frameworks: ['jasmine', 'requirejs'],
 
 
-    // list of files / patterns to load in the browser   ... false  as we using requirejs
+    // list of files / patterns to load in the browser
     files: [
-           
-           
-      {pattern: BOWER_ASSETS + 'underscore/underscore.js', included: false},
-      {pattern: BOWER_ASSETS + 'angular/angular.js', included: false},
-      {pattern: BOWER_ASSETS + 'angular/angular.js', included: false},
-      {pattern: BOWER_ASSETS + 'angular-mocks/angular-mocks.js', included: false},
-      {pattern: MAIN+'js/app.js', included:false},
-      TEST+'js/main-test.js',
-      {pattern: MAIN+'js/**/*.js', included: false},
-  //  {pattern: '**/*.js', included: false},
- //   {pattern: '../main/webapp/components/*.js', included: false},
-      {pattern: TEST+'/js/**/*Spec.js', included: false}
+            
+      {pattern: BOWER_ASSETS + 'underscore/underscore.js', included: true},
+      {pattern: BOWER_ASSETS + 'angular/angular.js', included: true},
+      {pattern: BOWER_ASSETS + 'angular/angular.js', included: true},
+      {pattern: BOWER_ASSETS + 'angular-mocks/angular-mocks.js', included: true},
+      {pattern: '../../../main/webapp/js/**/*.js', included: true},
+      {pattern: '**/*Spec.js', included: true}
     ],
 
 
     // list of files to exclude
     exclude: [
-       '../requirejs/**/*.js',  
-       'test/webapp/js/node_modules/**/*Spec.js',  //exclude the examples 
-       'test/webapp/js/node_modules/**/*spec.js',
-       '**/*/js/main.js'
+       '../../../test/webapp/js/node_modules/**/*Spec.js',  //exclude the examples 
+       '../../../test/webapp/js/node_modules/**/*spec.js'
     ],
 
 
@@ -70,7 +59,7 @@ module.exports = function(config) {
 
     // level of logging
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    logLevel: config.LOG_INFO || config.LOG_DEBUG,
+    logLevel: config.LOG_INFO,
 
 
     // enable / disable watching file and executing tests whenever any file changes
