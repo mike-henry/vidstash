@@ -4,7 +4,7 @@
 define(['angular'], function(app) {
 
 	
-  var module = angular.module('app', []);   //TODO get angular found!!
+  var module = angular.module('app', []);   
   module.config(['$controllerProvider', 
     '$compileProvider', 
     '$filterProvider', 
