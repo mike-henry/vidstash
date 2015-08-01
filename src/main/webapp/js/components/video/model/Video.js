@@ -2,10 +2,9 @@
 
 
 
-define([], function() {
+define(['../videoModule-init'], function(module) {
 
-	
-	com.spx.vidstash.Video = function(name, url, description) {
+	 module.Video = function(name, url, description) {
 		this.name = name;
 		this.url = url;
 		this.description= description;
@@ -27,5 +26,4 @@ define([], function() {
 		};
 
 	};
-
 });

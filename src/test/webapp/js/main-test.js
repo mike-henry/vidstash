@@ -1,16 +1,18 @@
 
 //TODO  move this monstrosity
+
+
+//TODO  this has to go!!
 var com = com || {};
 
 (function() {
 	com.spx = com.spx || {};
-	com.spx.vidstash = com.spx.vidstash || {};
+	com.spx.vidstash = com.spx.vidstash || {};	
 
-})()
-
+})();
 
 var tests = [];   // Loads the files mentioned in Karma config
-
+ 
 
 
 var _MAIN = '/base/main/webapp/'
@@ -43,7 +45,9 @@ requirejs.config({
         	
             exports: '_'
         },
-        'angular-mocks': ['angular']
+        'angular-mocks': ['angular'],
+        'app': ['angular','underscore']        
+        
        
     
     },

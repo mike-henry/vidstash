@@ -1,7 +1,7 @@
 //TODO create VideoManager
 
-define(['main/webapp/js/components/video/model/Video'], function(video) {
-//	define([''], function() {
+define(['main/webapp/js/components/video/videoModule'], function(videoModule) {
+
 
   
 	
@@ -18,9 +18,9 @@ describe('manage videos', function() {
 
 	it('can create a video', function() {
 		
+		console.log(JSON.stringify(videoModule) +"**")
 		
-		
-		var video = new com.spx.vidstash.Video(TEST_NAME,BOB_MARTIN_VIDEO_URL,TEST_DESCRIPTION);
+		var video = new videoModule.Video(TEST_NAME,BOB_MARTIN_VIDEO_URL,TEST_DESCRIPTION);
 		
         expect(video.getURL()).toEqual(BOB_MARTIN_VIDEO_URL);		
         expect(video.getName()).toEqual(TEST_NAME);		
@@ -29,7 +29,7 @@ describe('manage videos', function() {
 	});
 	
 	it(' a video can change description', function() {
-		var video = new com.spx.vidstash.Video(TEST_NAME,BOB_MARTIN_VIDEO_URL,TEST_DESCRIPTION);
+		var video = new videoModule.Video(TEST_NAME,BOB_MARTIN_VIDEO_URL,TEST_DESCRIPTION);
 		
 				
 		expect(video.getDescription()).toEqual(TEST_DESCRIPTION);		

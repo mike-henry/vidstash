@@ -1,8 +1,5 @@
 
-define(['angular'],function(){
-
-	var module = angular.module('com.spx.vidstash.video',[]);
-	
+define(['angular','./videoModule-init'],function(_angular,module){
 	
 	module.service('videoManager',['$log',function ($log){
 		var self = this;

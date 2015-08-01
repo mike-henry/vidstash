@@ -1,8 +1,14 @@
+
+
+
+
 /* app.js */
 
 
-define(['angular'], function(app) {
+define([], function() {
 
+	
+	
 	
   var module = angular.module('app', []);   
   module.config(['$controllerProvider', 
