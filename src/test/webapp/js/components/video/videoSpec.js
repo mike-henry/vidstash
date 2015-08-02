@@ -6,7 +6,7 @@ define(['main/webapp/js/components/video/videoModule'], function(videoModule) {
   
 	
 	
-describe('manage videos', function() {
+describe('video model', function() {
 
 	
 	var BOB_MARTIN_VIDEO_URL = 'https://www.youtube.com/watch?v=QHnLmvDxGTY';
@@ -18,7 +18,6 @@ describe('manage videos', function() {
 
 	it('can create a video', function() {
 		
-		console.log(JSON.stringify(videoModule) +"**")
 		
 		var video = new videoModule.Video(TEST_NAME,BOB_MARTIN_VIDEO_URL,TEST_DESCRIPTION);
 		
