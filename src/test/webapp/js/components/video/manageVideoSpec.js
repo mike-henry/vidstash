@@ -1,8 +1,8 @@
 
 define(
-		[ 'angular-mocks', 'main/webapp/js/components/video/videoModule',
+		[ 'angular-mocks', 
 				'app' ],
-		function(mocks, videoModule,  app) {
+		function(mocks,   app) {
 			describe(
 					'manage videos',
 					function() {
@@ -11,8 +11,10 @@ define(
 						var TEST_VIDEO_NAME = 'testVideo';
 
 						var videoManagerService;
+						console.log(app);
+						var videoModule = app.getVideoModule();
 
-						beforeEach(module('com.spx.vidstash.video'));
+						beforeEach( module('com.spx.vidstash.video'));
 
 						beforeEach(inject(function(videoManager) {
 							videoManagerService = videoManager;
@@ -23,6 +25,8 @@ define(
 						it('anyone can add a video URL', function() {
 							// expect to be able to find the video that has been
 							// added
+							var videoModule = app.getVideoModule();
+							
 							var video = new videoModule.Video(TEST_VIDEO_NAME,
 									BOB_MARTIN_VIDEO_URL,
 									'professionalism in software engineering');

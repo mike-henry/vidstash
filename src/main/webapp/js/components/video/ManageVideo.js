@@ -1,11 +1,17 @@
-
+//console.log('MV');
 define(['angular','./videoModule-init'],function(_angular,module){
+	
+	
+	
 	
 	module.service('videoManager',['$log',function ($log){
 		var self = this;
 		var log =$log;
 		
 		var videos= {};
+		
+		
+	    
 		
 		
 		var getKeyedObjects = function (keyedObjects){

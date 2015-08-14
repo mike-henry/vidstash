@@ -1,7 +1,7 @@
 
 
 
-define(['require','angular'],function(require,_a){
+define(['require','angular'],function(require,$angular){
 
 	
 	var module = angular.module('com.spx.vidstash.video',[]);

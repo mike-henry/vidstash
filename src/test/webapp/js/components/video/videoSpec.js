@@ -1,6 +1,6 @@
 //TODO create VideoManager
 
-define(['main/webapp/js/components/video/videoModule'], function(videoModule) {
+define(['app'], function(app) {
 
 
   
@@ -14,7 +14,7 @@ describe('video model', function() {
 	var TEST_DESCRIPTION = 'professionalism in software engineering';
 	var NEW_DESCRIPTION = 'professionalism in software';
 
-
+	var videoModule = app.getVideoModule();
 
 	it('can create a video', function() {
 		

@@ -4,8 +4,8 @@
 module.exports = function(config) {
 	
   
-  var TEST = 'test/webapp/';
-  var MAIN = 'main/webapp/';	  
+  var TEST = './test/webapp/';
+  var MAIN = './main/webapp/';	  
   
 
   var BOWER_ASSETS = MAIN + 'assets/bower/';
@@ -13,7 +13,7 @@ module.exports = function(config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '../../..',
+    basePath:  '../../../', 
 
 
     // frameworks to use
@@ -33,9 +33,12 @@ module.exports = function(config) {
       {pattern: MAIN+'js/app.js', included:false},
       TEST+'js/main-test.js',
       {pattern: MAIN+'js/**/*.js', included: false},
+      {pattern: MAIN+'js/**/*.js', included: false},
+      {pattern: MAIN+'js/components/video/VideoModule.js', included: false},
+     
   //  {pattern: '**/*.js', included: false},
  //   {pattern: '../main/webapp/components/*.js', included: false},
-      {pattern: TEST+'/js/**/*Spec.js', included: false}
+      {pattern: TEST+'**/*Spec.js', included: false}
     ],
 
 

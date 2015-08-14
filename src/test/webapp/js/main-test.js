@@ -1,22 +1,14 @@
 
-//TODO  move this monstrosity
 
 
-//TODO  this has to go!!
-var com = com || {};
-
-(function() {
-	com.spx = com.spx || {};
-	com.spx.vidstash = com.spx.vidstash || {};	
-
-})();
 
 var tests = [];   // Loads the files mentioned in Karma config
  
 
 
-var _MAIN = '/base/main/webapp/'
-var BOWER_ASSETS = _MAIN + 'assets/bower/';
+var _MAIN = 'main/webapp/'
+//var BOWER_ASSETS = _MAIN + 'assets/bower/';
+var BOWER_ASSETS =  'assets/bower/';
 
 for (var file in window.__karma__.files) {
   if (window.__karma__.files.hasOwnProperty(file)) {
@@ -28,16 +20,17 @@ for (var file in window.__karma__.files) {
 
 
 
-requirejs.config({
+require.config({
     // Karma serves files from '/base'
-    baseUrl: '/base',
+    baseUrl: '/base/main/webapp/',
 
     paths: {
         'underscore': BOWER_ASSETS+ 'underscore/underscore',
         'angular': BOWER_ASSETS+ 'angular/angular',
         'angular-mocks': BOWER_ASSETS+ 'angular-mocks/angular-mocks',
+        'util':  'js/components/util/util',
         'root':_MAIN ,
-         'app':'main/webapp/js/app'
+         'app':'js/app'
     },
 
     shim: {
@@ -46,7 +39,7 @@ requirejs.config({
             exports: '_'
         },
         'angular-mocks': ['angular'],
-        'app': ['angular','underscore']        
+        'app': ['angular','underscore','util']        
         
        
     
@@ -59,4 +52,4 @@ requirejs.config({
     callback: window.__karma__.start
 });
 
-require(['app']);
+//require(['app']);
