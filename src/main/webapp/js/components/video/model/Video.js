@@ -1,10 +1,8 @@
 
-
-console.log('V');
+ 
 
 define(['../videoModule-init'], function(module) {
 
-	console.log("huh?............")
 	 module.Video = function(name, url, description) {
 		this.name = name;
 		this.url = url;

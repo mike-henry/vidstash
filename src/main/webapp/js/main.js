@@ -4,7 +4,6 @@
 
 var BOWER_ASSETS =  'assets/bower/';
 
-console.log("...    wtf")
 require.config({
   baseUrl: '.',
   paths: {
@@ -21,11 +20,9 @@ require.config({
 
 require(['./app']);
 
-
-
 console.log("...initiated")
 
-//
+
 
 
 

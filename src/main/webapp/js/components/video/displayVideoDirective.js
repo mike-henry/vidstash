@@ -1,4 +1,3 @@
-//console.log('DMV');
 define(['angular','./videoModule-init','module'],function(_angular,module,rsModule){
 	
 

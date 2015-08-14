@@ -1,13 +1,6 @@
 define([ 'util', 'js/components/video/videoModule'], function(util,videoModule) {
 	
-	var self = this;
-
-	
-	//d e f i n e([ 'util', 'main/webapp/js/components/video/videoModule'], function(util,videoModule) {
-
-	
-	
-	console.log('loadig app')
+		
   var module = angular.module('app', []);   
   module.config(['$controllerProvider', 
     '$compileProvider', 
@@ -21,6 +14,7 @@ define([ 'util', 'js/components/video/videoModule'], function(util,videoModule) 
       module.service = $provide.service;
      }
  ]);
+  angular.bootstrap(document, ['app']);
 console.log('Application Started')
 
 

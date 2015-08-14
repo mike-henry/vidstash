@@ -1,4 +1,3 @@
-//console.log('MV');
 define(['angular','./videoModule-init'],function(_angular,module){
 	
 	
