@@ -9,12 +9,16 @@ require.config({
   paths: {
 	   'underscore': BOWER_ASSETS+ 'underscore/underscore',
        'angular': BOWER_ASSETS+ 'angular/angular',
+       'ngroute': BOWER_ASSETS+ 'angular-route/angular-route',
+       'bootstrap': BOWER_ASSETS+ 'angular-bootstrap/ui-bootstrap',
        'util': 'js/components/util/util' ,
        'app':'js/app'
   },
   shim: {
     angular: { exports: 'angular' },
-    app : ['underscore','angular' ]
+    'bootstrap': ['angular'],
+    'ngroute':['angular'],
+    app : ['underscore','angular','ngroute','bootstrap' ]
   }
 });
 

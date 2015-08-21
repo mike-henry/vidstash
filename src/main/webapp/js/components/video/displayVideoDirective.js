@@ -5,21 +5,38 @@ define(['angular','./videoModule-init','module'],function(_angular,module,rsModu
 	var templateDirectory = getSourceDirectiveTemplate(rsModule);
 	
 	
-	alert (templateDirectory+":");
 	
 	
-	module.directive('dis',['$log',function ($log){
+	
+	module.directive('dis',['$log','$sce',function ($log,$sce){
 		var self = this;
 		var log =$log;
 		var dir = {};
 		dir.ristrict = "E";
-		dir.templateURL =  templateDirectory + "displayVideoTemplate.html";
+	  
+		
+		var link = function($scope, element, attributes, controller) {
+            $scope.exceptURLAsSecure = function() {
+                $scope.trustedSrc = $sce.trustAsResourceUrl($scope.video.getURL());
+            }
+ 
+            $scope.$watch('video', function(newVal, oldVal) {
+                $scope.exceptURLAsSecure(newVal);
+            });
+        }
+		
+ 	 	////dir.template = "<iframe width='{{width}}' height='{{height}}' src='{{trustedSrc}}' ></iframe>";
+		dir.templateUrl =  templateDirectory + "displayVideoTemplate.html";
+		console.log (dir.templateUrl);
 		dir.$scope = {
 		        video : "=",
 		        width : "=",
-		        height: "="
+		        height: "=",
+		       
 		}	
+		
 		dir.replace=true;
+		dir.link=link;
 		return dir;	
 		
 		

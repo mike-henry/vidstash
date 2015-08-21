@@ -7,7 +7,6 @@ var tests = [];   // Loads the files mentioned in Karma config
 
 
 var _MAIN = 'main/webapp/'
-//var BOWER_ASSETS = _MAIN + 'assets/bower/';
 var BOWER_ASSETS =  'assets/bower/';
 
 for (var file in window.__karma__.files) {
@@ -27,7 +26,9 @@ require.config({
     paths: {
         'underscore': BOWER_ASSETS+ 'underscore/underscore',
         'angular': BOWER_ASSETS+ 'angular/angular',
+        'ngroute': BOWER_ASSETS+ 'angular-route/angular-route',
         'angular-mocks': BOWER_ASSETS+ 'angular-mocks/angular-mocks',
+        'bootstrap': BOWER_ASSETS+ 'angular-bootstrap/ui-bootstrap',
         'util':  'js/components/util/util',
         'root':_MAIN ,
          'app':'js/app'
@@ -39,7 +40,9 @@ require.config({
             exports: '_'
         },
         'angular-mocks': ['angular'],
-        'app': ['angular','underscore','util']        
+        'ngroute': ['angular'],
+        'bootstrap': ['angular'],
+        'app': ['angular','underscore','util','bootstrap','ngroute']        
         
        
     

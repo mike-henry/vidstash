@@ -4,23 +4,24 @@
 define(['../videoModule-init'], function(module) {
 
 	 module.Video = function(name, url, description) {
+		var self = this;
 		this.name = name;
 		this.url = url;
 		this.description= description;
 
-		this.getURL = function() {
-			return this.url;
+		self.getURL = function() {
+			return  this.url;
 		}
 
-		this.getName = function() {
+		self.getName = function() {
 			return this.name;
 		}
 
-		this.getDescription = function() {
+		self.getDescription = function() {
 			return this.description;
 		};
 		
-		this.setDescription = function(description) {
+		self.setDescription = function(description) {
 			 this.description = description;
 		};
 

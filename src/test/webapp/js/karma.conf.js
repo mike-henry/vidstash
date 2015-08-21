@@ -28,11 +28,13 @@ module.exports = function(config) {
            
       {pattern: BOWER_ASSETS + 'underscore/underscore.js', included: false},
       {pattern: BOWER_ASSETS + 'angular/angular.js', included: false},
-      {pattern: BOWER_ASSETS + 'angular/angular.js', included: false},
+      {pattern: BOWER_ASSETS + 'angular-route/angular-route.js', included: false},
       {pattern: BOWER_ASSETS + 'angular-mocks/angular-mocks.js', included: false},
+      {pattern: BOWER_ASSETS+ 'angular-bootstrap/ui-bootstrap.js' , included: false},
       {pattern: MAIN+'js/app.js', included:false},
       TEST+'js/main-test.js',
       {pattern: MAIN+'js/**/*.js', included: false},
+      {pattern: MAIN+'js/**/*.html', included: false},
       {pattern: MAIN+'js/**/*.js', included: false},
       {pattern: MAIN+'js/components/video/VideoModule.js', included: false},
      
@@ -54,8 +56,8 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-    },
-
+        'template/*.html': 'ng-html2js'
+      },
 
     // test results reporter to use
     // possible values: 'dots', 'progress'

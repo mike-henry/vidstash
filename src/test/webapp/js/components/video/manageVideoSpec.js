@@ -7,11 +7,11 @@ define(
 					'manage videos',
 					function() {
 
-						var BOB_MARTIN_VIDEO_URL = 'https://www.youtube.com/watch?v=QHnLmvDxGTY';
+						var BOB_MARTIN_VIDEO_URL = 'http://www.youtube.com/embed?v=QHnLmvDxGTY';
 						var TEST_VIDEO_NAME = 'testVideo';
 
 						var videoManagerService;
-						console.log(app);
+					
 						var videoModule = app.getVideoModule();
 
 						beforeEach( module('com.spx.vidstash.video'));
