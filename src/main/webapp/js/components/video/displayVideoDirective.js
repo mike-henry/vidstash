@@ -27,7 +27,7 @@ define(['angular','./videoModule-init','module'],function(_angular,module,rsModu
 		
  	 	////dir.template = "<iframe width='{{width}}' height='{{height}}' src='{{trustedSrc}}' ></iframe>";
 		dir.templateUrl =  templateDirectory + "displayVideoTemplate.html";
-		console.log (dir.templateUrl);
+		//console.log (dir.templateUrl);
 		dir.$scope = {
 		        video : "=",
 		        width : "=",

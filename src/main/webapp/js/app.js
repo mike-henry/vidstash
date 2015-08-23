@@ -1,7 +1,10 @@
-define([ 'util',  'js/components/video/videoModule'], function(util,videoModule) {
+define([ 'util', 
+         'js/components/video/videoModule',
+         'js/components/session/sessionModule'
+         ], function(util,videoModule) {
 	
 		
-  var module = angular.module('app', ['ngRoute','ui.bootstrap','com.spx.vidstash.video']);   
+  var module = angular.module('app', ['ngRoute','ui.bootstrap','com.spx.session','com.spx.vidstash.video']);   
   module.config(['$controllerProvider', 
     '$compileProvider', 
     '$filterProvider', 
@@ -65,6 +68,14 @@ define([ 'util',  'js/components/video/videoModule'], function(util,videoModule)
 		$scope.video=vid;  //lol
 		};
 	}]);
+	
+	module.controller('MainControl',['$scope', function($scope){
+		var self = this;
+		$scope.ProjectName= "Video Stash";
+		$scope.subtitle= "A place to store your Video URLS";
+	}]);
+	
+	
 	
 	angular.bootstrap(document, ['app']);
 	

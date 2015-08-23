@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>vid stash</title>
+
+</head>
+ <link href="assets/bower/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css" /> 
+<script data-main="js/main.js" src="assets/bower/requirejs/require.js"></script>
+
+
+
+
+
+<body >
+
+<div ng-init="x= 'mike'; y=1"  >
+
+
+<button type="button" class="btn btn-primary" ng-model="singleModel" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
+   press me
+</button>
+	<H1>HELLO. {{x}}  .{{y}}</H1>
+
+</div>
+
+<div ng-controller="testControl as ctrl"  ng-init="z=0">
+<dis video="{{video}}" > </dis>
+<input ng-model="name" >
+<input ng-model="url" >
+<input ng-model="description" >
+
+<button type="button" class="btn"  ng-click="ctrl.addVid(); "  >create</button>
+
+</div>
+
+ 
+
+</body>
+
+</body>
+</html>

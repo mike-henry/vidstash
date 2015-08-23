@@ -2,41 +2,30 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>vid stash</title>
+<title>video stash</title>
 
 </head>
- <link href="assets/bower/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css" /> 
+<link href="assets/bower/bootstrap/dist/css/bootstrap.css"
+	rel="stylesheet" type="text/css" />
+<link href="styles/main.css" rel="stylesheet" type="text/css" />
 <script data-main="js/main.js" src="assets/bower/requirejs/require.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<body    ng-controller="MainControl" >
 
 
+<nav class="navbar navbar-inverse navbar-fixed-top">
+ <a href="#"  class="navbar-brand title" >{{ProjectName}}</a>
+</nav>
 
 
-
-<body >
-
-<div ng-init="x= 'mike'; y=1"  >
-
-
-<button type="button" class="btn btn-primary" ng-model="singleModel" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
-   press me
-</button>
-	<H1>HELLO. {{x}}  .{{y}}</H1>
-
-</div>
-
-<div ng-controller="testControl as ctrl"  ng-init="z=0">
-<dis video="{{video}}" > </dis>
-<input ng-model="name" >
-<input ng-model="url" >
-<input ng-model="description" >
-
-<button type="button" class="btn"  ng-click="ctrl.addVid(); "  >create</button>
-
-</div>
-
- 
-
-</body>
-
+	<div class=".container">
+		<div class="jumbotron title"  ng-cloak="true">
+			<H1>{{ProjectName}}</H1>
+			<p>{{subtitle}}</p>
+			<div class="main">
+				<img alt="video reel" class="img-rounded" src="images/reel.jpg">
+			</div>
+		</div>
+	</div>
 </body>
 </html>
