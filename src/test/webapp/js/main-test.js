@@ -29,6 +29,8 @@ require.config({
         'ngroute': BOWER_ASSETS+ 'angular-route/angular-route',
         'angular-mocks': BOWER_ASSETS+ 'angular-mocks/angular-mocks',
         'bootstrap': BOWER_ASSETS+ 'angular-bootstrap/ui-bootstrap',
+        'ngCookies': BOWER_ASSETS+ 'angular-cookies/angular-cookies',
+        'localstorage': BOWER_ASSETS+ 'ngStorage/src/angularLocalStorage',
         'util':  'js/components/util/util',
         'root':_MAIN ,
          'app':'js/app'
@@ -42,7 +44,9 @@ require.config({
         'angular-mocks': ['angular'],
         'ngroute': ['angular'],
         'bootstrap': ['angular'],
-        'app': ['angular','underscore','util','bootstrap','ngroute']        
+        'ngCookies':['angular'],
+        'localstorage': ['angular','ngCookies'],
+        'app': ['angular','underscore','util','bootstrap','ngroute','localstorage']        
         
        
     

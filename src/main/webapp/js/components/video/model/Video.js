@@ -11,11 +11,11 @@ define(['../videoModule-init'], function(module) {
 
 		self.getURL = function() {
 			return  this.url;
-		}
+		};
 
 		self.getName = function() {
 			return this.name;
-		}
+		};
 
 		self.getDescription = function() {
 			return this.description;

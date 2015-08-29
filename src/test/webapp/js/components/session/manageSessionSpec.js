@@ -3,6 +3,12 @@ define(
 		[ 'angular-mocks', 
 				'app' ],
 		function(mocks,   app) {
+			
+			var LOGIN_URL = '/vidstash/services/session/login';
+			var LOGOUT_URL = '/vidstash/services/session/logout';
+			
+			
+			
 			describe(
 					'manage session',
 					function() {
@@ -19,16 +25,16 @@ define(
 						}));
 
 						it('after init session reports Logged out', function() {
-							sessionManagerService.start();
+							sessionManagerService.init();
 							var isLoggedin=sessionManagerService.isLoggedIn();
 							expect(isLoggedin).toEqual(false);
 
 						});
 						
 						it('after init and Successful Login session reports Logged in', function() {
-							sessionManagerService.start();
+							sessionManagerService.init();
 							var sessionData = {session:'00001'}; 
-						    mockBackend.expectPOST('/login').respond(200,sessionData);
+						    mockBackend.expectPOST(LOGIN_URL).respond(200,sessionData);
 							sessionManagerService.login('test','password');
 							mockBackend.flush();
 							var isLoggedin=sessionManagerService.isLoggedIn();
@@ -38,9 +44,9 @@ define(
 						});
 						
 						it('after init and unSuccessful Login session reports Logged out', function() {
-							sessionManagerService.start();
+							sessionManagerService.init();
 							var sessionData = {session:'00001'}; 
-						    mockBackend.expectPOST('/login').respond(403,sessionData);
+						    mockBackend.expectPOST(LOGIN_URL).respond(403,sessionData);
 							sessionManagerService.login('test','password');
 							mockBackend.flush();
 							var isLoggedin=sessionManagerService.isLoggedIn();
@@ -49,20 +55,18 @@ define(
 						});
 						
 						it('after init and Successful Login session and Logout reports Logged out', function() {
-							sessionManagerService.start();
+							sessionManagerService.init();
 							var sessionData = {session:'00001'}; 
-						    mockBackend.expectPOST('/login').respond(200,sessionData);
+						    mockBackend.expectPOST(LOGIN_URL).respond(200,sessionData);
 							sessionManagerService.login('test','password');
 							mockBackend.flush();
 							var isLoggedin=sessionManagerService.isLoggedIn();
 							expect(isLoggedin).toEqual(true);
 							expect(sessionManagerService.getUserName()).toEqual('test');
-							 mockBackend.expectPOST('/logout').respond(200,sessionData);
+							mockBackend.expectPOST(LOGOUT_URL).respond(200,sessionData);
 							sessionManagerService.logout();
 							mockBackend.flush();
 							expect(sessionManagerService.isLoggedIn()).toEqual(false);
-							
-
 						});
 
 

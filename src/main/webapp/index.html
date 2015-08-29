@@ -10,22 +10,14 @@
 <link href="styles/main.css" rel="stylesheet" type="text/css" />
 <script data-main="js/main.js" src="assets/bower/requirejs/require.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<body    ng-controller="MainControl" >
+<body >
 
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
- <a href="#"  class="navbar-brand title" >{{ProjectName}}</a>
-</nav>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<a href="#" class="navbar-brand title">{{ProjectName}}</a>
+	</nav>
+    <h1 ng-controller="StartController" >   WELCOME   </h1>
 
 
-	<div class=".container">
-		<div class="jumbotron title"  ng-cloak="true">
-			<H1>{{ProjectName}}</H1>
-			<p>{{subtitle}}</p>
-			<div class="main">
-				<img alt="video reel" class="img-rounded" src="images/reel.jpg">
-			</div>
-		</div>
-	</div>
 </body>
 </html>

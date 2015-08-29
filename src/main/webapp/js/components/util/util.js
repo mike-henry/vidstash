@@ -35,18 +35,18 @@ define([ ],function(){
 		location.pop();
 		var directory = location.join('/');
 		return directory;
-	}
+	};
 	
 	
 	Object.prototype.getSourceDirectiveTemplate = function(requireJSModule) {
 	
 		return getLoadedSourceDirectory(requireJSModule)+"/template/";
-	}
+	};
 	
 	
 	Object.prototype.loadedTemplateSource = function(template){
 		return loadedSource()+ '/templates/'+template;
-	} ;
+	};
 	
 	
 	

@@ -15,6 +15,7 @@ module.exports = function(config) {
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath:  '../../../', 
 
+   
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
@@ -31,6 +32,8 @@ module.exports = function(config) {
       {pattern: BOWER_ASSETS + 'angular-route/angular-route.js', included: false},
       {pattern: BOWER_ASSETS + 'angular-mocks/angular-mocks.js', included: false},
       {pattern: BOWER_ASSETS+ 'angular-bootstrap/ui-bootstrap.js' , included: false},
+      {pattern: BOWER_ASSETS+ 'angular-cookies/angular-cookies.js' , included: false},
+      {pattern: BOWER_ASSETS+ 'ngStorage/src/angularLocalStorage.js' , included: false},
       {pattern: MAIN+'js/app.js', included:false},
       TEST+'js/main-test.js',
       {pattern: MAIN+'js/**/*.js', included: false},
@@ -84,7 +87,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome' ],
+    browsers: ['PhantomJS2' ],
 
 
     // Continuous Integration mode

@@ -10,11 +10,11 @@ define(['../sessionModule-init'], function(module) {
 
 		self.getEmail = function() {
 			return  self.email;
-		}
+		};
 
 		self.getName = function() {
 			return self.name;
-		}
+		};
 
 	
 

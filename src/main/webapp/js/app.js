@@ -4,13 +4,14 @@ define([ 'util',
          ], function(util,videoModule) {
 	
 		
-  var module = angular.module('app', ['ngRoute','ui.bootstrap','com.spx.session','com.spx.vidstash.video']);   
+  var module = angular.module('app', ['ngRoute','ui.bootstrap','com.spx.session','com.spx.vidstash.video','angularLocalStorage']);   
   module.config(['$controllerProvider', 
     '$compileProvider', 
     '$filterProvider', 
     '$provide',
     '$sceDelegateProvider',
     '$routeProvider',
+   
     
     function($controllerProvider, $compileProvider, $filterProvider, $provide, $sceDelegateProvider,$routeProvider) {
       module.controller = $controllerProvider.register;
@@ -19,6 +20,7 @@ define([ 'util',
       module.factory = $provide.factory;
       module.service = $provide.service;
       $sceDelegateProvider.resourceUrlWhitelist(['**']);
+      
      
       var route = $routeProvider;
       
@@ -31,7 +33,7 @@ define([ 'util',
     	  template: '<H1>1</H1>',
     	  resolve: {
     		  first: function (){
-    			  console.log('one done')
+    			  console.log('one done');
     		  }
     	  },
     	  controller: ['$routeParams', function($routeParam){
@@ -56,7 +58,7 @@ define([ 'util',
 
   module.getVideoModule = function (){
 	return videoModule;
-  }
+  };
 	
 	
 	module.controller('testControl',['$scope','videoManager', function($scope,videoManager){
@@ -80,7 +82,7 @@ define([ 'util',
 	angular.bootstrap(document, ['app']);
 	
   
-	console.log('Application Started')
+	console.log('Application Started');
 
  return module;
 
