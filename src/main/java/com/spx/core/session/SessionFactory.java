@@ -13,6 +13,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import com.spx.core.auth.Unsecured;
 import com.spx.core.event.EventLogger;
 
 @Stateless
@@ -36,11 +37,18 @@ public class SessionFactory {
 		
 	}
 	
-	
+	@POST()
+	@Path("/test")
+	public SessionIdentifier test(Credentials credentials)
+	{
+		System.out.println("ooops");
+	    return null;
+	}
 	
 	
 	@POST()
 	@Path("/login")
+	@Unsecured
 	public SessionIdentifier logon(Credentials credentials)
 	{
 		if (isValidUser(credentials))

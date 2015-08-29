@@ -1,5 +1,6 @@
 package com.spx.core.auth;
 
+import java.lang.reflect.Method;
 import java.util.List;
 
 import javax.ws.rs.WebApplicationException;
@@ -9,6 +10,7 @@ import org.jboss.resteasy.core.ResourceMethod;
 import org.jboss.resteasy.core.ServerResponse;
 import org.jboss.resteasy.spi.Failure;
 import org.jboss.resteasy.spi.HttpRequest;
+import org.jboss.resteasy.spi.UnauthorizedException;
 import org.jboss.resteasy.spi.interception.PreProcessInterceptor;
 
 import javax.ws.rs.core.HttpHeaders;
@@ -23,24 +25,66 @@ public class RequestAuthorisor implements PreProcessInterceptor{
 	public  static String SESSION_ID_HEADER_KEY="x-session-id"; 
 	
 	@Override
-	public ServerResponse preProcess(HttpRequest request, ResourceMethod method)
+	public ServerResponse preProcess(HttpRequest request, ResourceMethod resourceMethod)
 			throws Failure, WebApplicationException 
 	{
-		
-		
-		HttpHeaders headers = request.getHttpHeaders();
-		MultivaluedMap<String, String> x = headers.getRequestHeaders();
-		List<String> headerValues = headers.getRequestHeader(SESSION_ID_HEADER_KEY);
-		if (headerValues != null)
-		for (String headerValue: headerValues)
-		{
-		
-		System.out.println("HEEEE  this shit works session is"+headerValue);
-		}
-		System.out.println("kinda "+ x.getFirst(SESSION_ID_HEADER_KEY));
+	
+	   if( (isMethodSecured(resourceMethod) && isClassSecured(resourceMethod)  && isSessionIDAvailable(request) ==false))  			   
+	   {
+		   throw new UnauthorizedException();
+	   }
+	
 		return null;
 	}
 
+	
+	
+	boolean isSessionIDAvailable(HttpRequest request)
+	{
+		return getSessionID(request) != null;
+	}
+	
+	String getSessionID(HttpRequest request){
+		String result= null;
+		
+		HttpHeaders headers = request.getHttpHeaders();
+		MultivaluedMap<String, String> values = headers.getRequestHeaders();
+		if (values != null)
+		{
+			result =values.getFirst(SESSION_ID_HEADER_KEY);
+		}
+		return result;
+	}
+	
+	boolean isClassSecured(ResourceMethod resourceMethod)
+	{
+		boolean result = true;
+		Class<?> type= resourceMethod.getResourceClass();
+		
+		if (type!= null)
+		{
+				result &= (type.getAnnotation(Unsecured.class) == null);
+		}
+		
+		return result;
+	}
+	
+	boolean isMethodSecured(ResourceMethod resourceMethod)
+	{
+		boolean result = true;
+		Method method = resourceMethod.getMethod();
+		
+		if (method!= null)
+		{
+			result &= (method.getAnnotation(Unsecured.class) == null);
+		}
+		
+		return result;
+	}
+	
+	
+	
+	
 	
 	
 	

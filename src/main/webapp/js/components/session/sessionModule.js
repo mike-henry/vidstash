@@ -6,7 +6,8 @@ define(['require','angular',
         './SessionManager',
         './LoginController',
         './StartSessionController',
-        './SessionHTTPInterceptor'
+        './SessionHTTPInterceptor',
+        './LoginDirective'
         ],function(require,$angular,manageUser,startSession){
 	var module = angular.module('com.spx.session');
 	
