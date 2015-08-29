@@ -1,4 +1,4 @@
-package com.spx.session;
+package com.spx.core.session;
 
 import static junit.framework.Assert.*;
 
