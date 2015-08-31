@@ -1,10 +1,12 @@
 define([ 'util', 
          'js/components/video/videoModule',
-         'js/components/session/sessionModule'
+         'js/components/session/sessionModule',
+         'js/components/messaging/messagingModule'
+        
          ], function(util,videoModule) {
 	
 		
-  var module = angular.module('app', ['ngRoute','ui.bootstrap','com.spx.session','com.spx.vidstash.video','angularLocalStorage']);   
+  var module = angular.module('app', ['ngRoute','ui.bootstrap','com.spx.session','com.spx.vidstash.video','angularLocalStorage','com.spx.messaging']);   
   module.config(['$controllerProvider', 
     '$compileProvider', 
     '$filterProvider', 

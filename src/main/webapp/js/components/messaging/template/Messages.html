@@ -1,0 +1,4 @@
+<div >
+	 <alert ng-repeat="message in messages" type="{{message.type}}"
+		close="closeMessage($index)"   dismiss-on-timeout="{{message.timeout}}" ><strong> {{message.text}} </strong></alert>
+</div>

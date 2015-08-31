@@ -77,5 +77,15 @@ define([ ],function(){
 	};
 	
 	
+	
+	Object.prototype.exists =function (other){
+		var result = false;
+		if (other != undefined && other != null){
+			result = true;
+		}
+		return result;
+	}
+	
+	
 });
 	

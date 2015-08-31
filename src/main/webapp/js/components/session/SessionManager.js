@@ -104,7 +104,15 @@ define(['angular','./sessionModule-init'],function(_angular,module){
 				
 				
 			  },function() {
-				     self.end();
+				  
+				  var failureMessage = {
+						 'type':'warning',
+						  'text':  +userName+' Login Failure'
+				  };
+				   
+				  self.end();
+			
+				  $scope.$emit('message',failureMessage );
 			  }
 			);
 			

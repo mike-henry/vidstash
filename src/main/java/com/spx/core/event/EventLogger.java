@@ -54,7 +54,7 @@ public class EventLogger {
 	
 	public <T> T raise(Throwable throwable, Class<T> type)
 	{
-		raise(throwable,type);
+		raise(throwable,type,new Object[0]);
 		return null;//Never reached;
 	}
 	
