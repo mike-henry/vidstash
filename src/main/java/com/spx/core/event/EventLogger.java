@@ -15,6 +15,12 @@ public class EventLogger {
 	Map<Class<?>,Logger> loggers = new  ConcurrentHashMap<Class<?>, Logger>();
 	
 	
+	public EventLogger()
+	{
+		
+	}
+	
+	
 	public <T> void log(T object,String message,Object ... params)
 	{
 		Logger logger= getFactory(object.getClass());

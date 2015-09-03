@@ -3,6 +3,7 @@ package com.spx.core.auth;
 import java.lang.reflect.Method;
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.ws.rs.WebApplicationException;
 
 import org.jboss.resteasy.annotations.interception.ServerInterceptor;
@@ -22,18 +23,26 @@ import javax.ws.rs.ext.Provider;
 public class RequestAuthorisor implements PreProcessInterceptor{
 
 	
+	
+	@Inject
+	Authenticator  auth;
+	
+	
+	
+	
+	
 	public  static String SESSION_ID_HEADER_KEY="x-session-id"; 
 	
 	@Override
 	public ServerResponse preProcess(HttpRequest request, ResourceMethod resourceMethod)
 			throws Failure, WebApplicationException 
 	{
-	
+		auth.deactivate();
 	   if( (isMethodSecured(resourceMethod) && isClassSecured(resourceMethod)  && isSessionIDAvailable(request) ==false))  			   
 	   {
 		   throw new UnauthorizedException();
 	   }
-	
+	   auth.activate(getSessionID(request));
 		return null;
 	}
 
@@ -81,8 +90,6 @@ public class RequestAuthorisor implements PreProcessInterceptor{
 		
 		return result;
 	}
-	
-	
 	
 	
 	

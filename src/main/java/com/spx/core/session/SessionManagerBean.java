@@ -4,61 +4,67 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import javax.ejb.Stateless;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 
-import com.spx.core.auth.Unsecured;
+import com.spx.core.auth.Authenticator;
+import com.spx.core.auth.Session;
 import com.spx.core.event.EventLogger;
 
-@Stateless
-@Path("/session")
-@Produces(MediaType.APPLICATION_JSON)
-@Consumes(MediaType.APPLICATION_JSON)
-public class SessionFactory {
 
+public class SessionManagerBean implements SessionManager {
+
+	
+	
+	
+	
+	
 	//TODO this will be inside a session manager ... persisted in mongo..
 	private  final Map<String,SessionIdentifier> sessions = new HashMap<String,SessionIdentifier>();
 
 	final EventLogger logger = EventLogger.getInstance();
 	
-	@Inject  /// dont like this.
-	private EventLogger event;
+	
+	private final EventLogger event;
 	
 	
-
-	public SessionFactory()
+	private final Authenticator auth;
+	
+	@Inject
+	public SessionManagerBean( EventLogger event,Authenticator auth)
 	{
-		
+		this.event=event;
+		this.auth = auth;
 	}
 	
-	@POST()
-	@Path("/test")
+	/* (non-Javadoc)
+	 * @see com.spx.core.session.SessionManager#test(com.spx.core.session.Credentials)
+	 */
+	
 	public SessionIdentifier test(Credentials credentials)
 	{
-		System.out.println("ooops");
+		event.debug(this,"ooops");
 	    return null;
 	}
 	
 	
-	@POST()
-	@Path("/login")
-	@Unsecured
-	public SessionIdentifier logon(Credentials credentials)
+	/* (non-Javadoc)
+	 * @see com.spx.core.session.SessionManager#logon(com.spx.core.session.Credentials)
+	 */
+
+	public Session logon(Credentials credentials)
 	{
-		if (isValidUser(credentials))
+		try
 		{
-			SessionIdentifier identifier = instantiateIdentifier(credentials.getUserName());
-			addSession(identifier);
+			auth.login(credentials.getUserName(), credentials.getPassword());
 			logger.debug(this, "Session for {} Created",credentials.getUserName());
-			return identifier;
+			return auth.getSession();
 		}
-		return logger.raise(new InvalidUserExeption(credentials), SessionIdentifier.class);
+		catch(Exception e)
+		{
+			return logger.raise(new InvalidUserExeption(credentials), Session.class);
+		}
+		
 	}
 	
 	
@@ -80,8 +86,10 @@ public class SessionFactory {
 	}
 	
 	
-	@POST()
-	@Path("/logout")
+	/* (non-Javadoc)
+	 * @see com.spx.core.session.SessionManager#logout(com.spx.core.session.SessionIdentifier)
+	 */
+
 	public void logout(SessionIdentifier identifier)
 	{
 		if (isValid(identifier))
@@ -89,8 +97,10 @@ public class SessionFactory {
 			sessions.remove(identifier.getSessionID());
 		}
 	}
-	@GET()
-	@Path("/check")
+	/* (non-Javadoc)
+	 * @see com.spx.core.session.SessionManager#check(java.lang.String)
+	 */
+
 	public boolean check(String sessionID)
 	{
 		return sessionExists(sessionID);
