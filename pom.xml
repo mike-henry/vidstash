@@ -6,6 +6,7 @@
 	<artifactId>vidstash</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
+
 	<dependencies>
 		<dependency>
 			<groupId>javax</groupId>
@@ -25,7 +26,11 @@
 			<version>1.9.5</version>
 			<scope>test</scope>
 		</dependency>
-
+		<dependency>
+			<groupId>org.reflections</groupId>
+			<artifactId>reflections</artifactId>
+			<version>0.9.9-RC1</version>
+		</dependency>
 
 
 		<dependency>
@@ -52,14 +57,15 @@
 			<version>2.11.8</version>
 		</dependency>
 
-
-
-
 		<dependency>
-			<groupId>com.google.code.guice</groupId>
-			<artifactId>guice</artifactId>
-			<version>1.0</version>
+			<groupId>org.mongodb</groupId>
+			<artifactId>mongo-java-driver</artifactId>
+			<version>3.0.3</version>
 		</dependency>
+
+
+
+
 
 		<dependency>
 			<groupId>org.apache.commons</groupId>
@@ -108,16 +114,61 @@
 			<version>1.7.12</version>
 		</dependency>
 
+
+
+		<dependency>
+			<groupId>org.hibernate.ogm</groupId>
+			<artifactId>hibernate-ogm-mongodb</artifactId>
+			<scope>provided</scope>
+			<version>4.2.0.Final</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<scope>provided</scope>
+			<artifactId>mongodb-driver</artifactId>
+			<version>3.0.2</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.hibernate.javax.persistence</groupId>
+			<artifactId>hibernate-jpa-2.1-api</artifactId>
+			<version>1.0.0.Final</version>
+			<scope>provided</scope>
+		</dependency>
+
+
 	</dependencies>
 
+
+
+	<dependencyManagement>
+
+	</dependencyManagement>
+
+
+
 	<build>
+
+
+		<resources>
+			<resource>
+
+				<directory>
+	        src/main/resources
+	       </directory>
+
+			</resource>
+
+		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.3</version>
 				<configuration>
-				    <debug>true</debug>
+					<debug>true</debug>
 					<source>1.7</source>
 					<target>1.7</target>
 				</configuration>

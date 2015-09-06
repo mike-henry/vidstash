@@ -7,14 +7,15 @@ import javax.ws.rs.Path;
 import com.spx.core.auth.Session;
 import com.spx.core.auth.Unsecured;
 
-public interface SessionManager {
+public interface SessionManager
+{
 
-	public abstract SessionIdentifier test(Credentials credentials);
+    public abstract SessionIdentifier test(Credentials credentials);
 
-	public abstract Session logon(Credentials credentials);
+    public abstract Session logon(Credentials credentials);
 
-	public abstract void logout(SessionIdentifier identifier);
+    public abstract void logout(SessionIdentifier identifier);
 
-	public abstract boolean check(String sessionID);
+    public abstract boolean check(String sessionID);
 
 }

@@ -1,40 +1,41 @@
 package com.spx.core.session;
 
-public class Credentials {
+public class Credentials
+{
 
-	
-	private  String userName;
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
+    private String userName;
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setUserName(String userName)
+    {
+        this.userName = userName;
+    }
 
-	private  String password;
-	
-	Credentials(String userName,String password)
-	{
-		this.userName = userName;
-		this.password = password;
-	}
-	public Credentials()
-	{
-		
-	}
+    public void setPassword(String password)
+    {
+        this.password = password;
+    }
 
-	String getUserName() 
-	{
-		return userName;
-	}
+    private String password;
 
-	String getPassword() 
-	{
-		return password;
-	}
-	
+    Credentials(String userName, String password)
+    {
+        this.userName = userName;
+        this.password = password;
+    }
 
-	
-	
+    public Credentials()
+    {
+
+    }
+
+    String getUserName()
+    {
+        return userName;
+    }
+
+    String getPassword()
+    {
+        return password;
+    }
+
 }
