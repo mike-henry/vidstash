@@ -5,6 +5,7 @@ define(['angular','./sessionModule-init'],function(_angular,module){
 	
 	
 
+	
 
 	
 	module.service('sessionManager',['$log','$http','$rootScope','storage',function ($log,$http,$scope,storage){
@@ -48,7 +49,7 @@ define(['angular','./sessionModule-init'],function(_angular,module){
 			console.log(response.data);
 			
 			var sessionDetails= {
-					sessionID: response.data['sessionID'],
+					sessionID: response.data['id'],
 			        user:userName
 			};
 			return sessionDetails;

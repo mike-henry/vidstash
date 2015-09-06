@@ -88,7 +88,7 @@ public class TestLoginModule {
 		
 	
 		Authenticator  authenticator2 =  new Authenticator(event);
-		authenticator2.login(session.getSessionID());
+		authenticator2.login(session.getID());
 		Session session2 = authenticator2.getSession();
 		
 		Assert.assertEquals(session,session2);

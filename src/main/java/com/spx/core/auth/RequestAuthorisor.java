@@ -1,10 +1,12 @@
 package com.spx.core.auth;
 
 import java.lang.reflect.Method;
-import java.util.List;
 
 import javax.inject.Inject;
 import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.HttpHeaders;
+import javax.ws.rs.core.MultivaluedMap;
+import javax.ws.rs.ext.Provider;
 
 import org.jboss.resteasy.annotations.interception.ServerInterceptor;
 import org.jboss.resteasy.core.ResourceMethod;
@@ -14,17 +16,13 @@ import org.jboss.resteasy.spi.HttpRequest;
 import org.jboss.resteasy.spi.UnauthorizedException;
 import org.jboss.resteasy.spi.interception.PreProcessInterceptor;
 
-import javax.ws.rs.core.HttpHeaders;
-import javax.ws.rs.core.MultivaluedMap;
-import javax.ws.rs.ext.Provider;
-
 @Provider
 @ServerInterceptor
 public class RequestAuthorisor implements PreProcessInterceptor
 {
 
     @Inject
-    Authenticator auth;
+    AuthenticationBean auth;
 
     public static String SESSION_ID_HEADER_KEY = "x-session-id";
 

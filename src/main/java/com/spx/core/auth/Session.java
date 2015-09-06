@@ -1,18 +1,31 @@
 package com.spx.core.auth;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Transient;
 import javax.security.auth.Subject;
 
+@Entity
 public class Session
 {
 
+    @Transient
     private Subject subject;
 
-    private String sessionID;
+    @Id
+    private String id;
 
-    Session(Subject subject, String sessionID)
+    private boolean isActive = true;
+
+    public Session(Subject subject, String sessionID)
     {
         this.subject = subject;
-        this.sessionID = sessionID;
+        this.id = sessionID;
+    }
+
+    public Session()
+    {
+
     }
 
     public Subject getSubject()
@@ -20,9 +33,9 @@ public class Session
         return subject;
     }
 
-    public String getSessionID()
+    public String getID()
     {
-        return sessionID;
+        return id;
     }
 
     @Override
@@ -30,7 +43,7 @@ public class Session
     {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((sessionID == null) ? 0 : sessionID.hashCode());
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((subject == null) ? 0 : subject.hashCode());
         return result;
     }
@@ -45,12 +58,12 @@ public class Session
         if (getClass() != obj.getClass())
             return false;
         Session other = (Session) obj;
-        if (sessionID == null)
+        if (id == null)
         {
-            if (other.sessionID != null)
+            if (other.id != null)
                 return false;
         }
-        else if (!sessionID.equals(other.sessionID))
+        else if (!id.equals(other.id))
             return false;
         if (subject == null)
         {
@@ -60,6 +73,16 @@ public class Session
         else if (!subject.equals(other.subject))
             return false;
         return true;
+    }
+
+    public boolean isActive()
+    {
+        return isActive;
+    }
+
+    public void setActive(boolean isActive)
+    {
+        this.isActive = isActive;
     }
 
 }

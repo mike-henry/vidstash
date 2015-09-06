@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
 import com.spx.core.auth.Authenticator;
@@ -32,12 +31,13 @@ public class SessionManagerBean implements SessionManager
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see
      * com.spx.core.session.SessionManager#test(com.spx.core.session.Credentials
      * )
      */
 
+    @Override
     public SessionIdentifier test(Credentials credentials)
     {
         event.debug(this, "ooops");
@@ -46,12 +46,13 @@ public class SessionManagerBean implements SessionManager
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see
      * com.spx.core.session.SessionManager#logon(com.spx.core.session.Credentials
      * )
      */
 
+    @Override
     public Session logon(Credentials credentials)
     {
         try
@@ -83,13 +84,15 @@ public class SessionManagerBean implements SessionManager
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see com.spx.core.session.SessionManager#logout(com.spx.core.session.
      * SessionIdentifier)
      */
 
+    @Override
     public void logout(SessionIdentifier identifier)
     {
+        auth.logout();
         if (isValid(identifier))
         {
             sessions.remove(identifier.getSessionID());
@@ -98,10 +101,11 @@ public class SessionManagerBean implements SessionManager
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see com.spx.core.session.SessionManager#check(java.lang.String)
      */
 
+    @Override
     public boolean check(String sessionID)
     {
         return sessionExists(sessionID);

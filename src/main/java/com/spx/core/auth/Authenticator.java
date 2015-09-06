@@ -1,17 +1,17 @@
 package com.spx.core.auth;
 
 import java.security.InvalidParameterException;
-import java.util.Map;
 import java.util.UUID;
-import java.util.concurrent.ConcurrentHashMap;
 
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.security.auth.Subject;
 import javax.security.auth.login.LoginContext;
 import javax.security.auth.login.LoginException;
 
 import com.spx.core.event.EventLogger;
+import com.spx.core.persistence.EntityFinder;
 
 public class Authenticator
 {
@@ -20,9 +20,10 @@ public class Authenticator
 
     private static final String DEFAULT_CONTEXT = "Default";
 
-    static Map<String, Session> sessions = new ConcurrentHashMap<String, Session>();
+    final ThreadLocal<String> session = new ThreadLocal<String>();
 
-    final ThreadLocal<Session> session = new ThreadLocal<Session>();
+    @PersistenceContext(unitName = EntityFinder.PERSISTENCE_UNIT_NAME)
+    EntityManager sessionStorage;
 
     private final EventLogger event;
 
@@ -47,7 +48,11 @@ public class Authenticator
 
     public void login(String sessionToken)
     {
-        this.session.set(sessions.get(sessionToken));
+        Session session = this.sessionStorage.find(Session.class, sessionToken);
+        if (session != null)
+        {
+            this.session.set(sessionToken);
+        }
     }
 
     private void doLogin(String userName, String password) throws LoginException
@@ -61,8 +66,8 @@ public class Authenticator
     {
         String sessionID = UUID.randomUUID().toString();
         Session session = new Session(subject, sessionID);
-        this.session.set(session);
-        sessions.put(sessionID, session);
+        this.session.set(sessionID);
+        this.sessionStorage.persist(session);
     }
 
     private String getContextName()
@@ -72,7 +77,7 @@ public class Authenticator
 
     public Session getSession()
     {
-        return session.get();
+        return this.sessionStorage.find(Session.class, session.get());
     }
 
     public void activate(String sessionID)
@@ -80,11 +85,11 @@ public class Authenticator
         Session value = null;
         try
         {
-            if (sessionID == null)
+            if (isSessionIDSet() == false)
             {
                 throw new InvalidParameterException();
             }
-            value = sessions.get(sessionID);
+            value = sessionStorage.find(Session.class, sessionID);
             if (value == null)
             {
                 throw new InvalidParameterException();
@@ -92,22 +97,31 @@ public class Authenticator
         }
         finally
         {
-            session.set(value);
+            session.set(sessionID);
         }
     }
 
     public void deactivate()
     {
-        session.set(null);
+        if (isSessionIDSet())
+        {
+            session.set(null);
+        }
     }
 
     public void logout()
     {
-        if (session.get() != null)
+        if (isSessionIDSet())
         {
-            sessions.remove(session.get().getSessionID());
+            Session s = sessionStorage.find(Session.class, session.get());
+            sessionStorage.remove(s);
         }
         session.set(null);
+    }
+
+    private boolean isSessionIDSet()
+    {
+        return session.get() != null;
     }
 
 }

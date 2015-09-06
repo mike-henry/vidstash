@@ -47,7 +47,7 @@ public class SessionManagerTest {
 		Session session = doCheckLogin();
 		Authenticator auth = new Authenticator(event);
 		assertNull(auth.getSession());
-		auth.activate(session.getSessionID());
+		auth.activate(session.getID());
 		assertNotNull(auth.getSession());
 		Session session2 = auth.getSession();
 		assertEquals(session,session2);
@@ -59,11 +59,11 @@ public class SessionManagerTest {
 		Session session = doCheckLogin();
 		Authenticator auth = new Authenticator(event);
 		assertNull(auth.getSession());
-		auth.activate(session.getSessionID());
+		auth.activate(session.getID());
 		assertNotNull(auth.getSession());
 		auth.logout();
 		assertNull(auth.getSession());
-		auth.activate(session.getSessionID());
+		auth.activate(session.getID());
 
 		
 	}
